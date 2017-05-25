@@ -34,7 +34,7 @@ class popupWindow(object):
   def __init__(self, parent):
     top=self.top=tkinter.Toplevel(parent)
 #     tkinter.title(self,'Please select desired candidates:')
-    self.l=Label(top,text='Please select desired candidates:')
+    self.l=Label(top,text='Hello World')
     self.l.pack()
     self.e=Entry(top)
     self.e.pack()
@@ -161,12 +161,6 @@ class hsMiner(tkinter.Tk):
 
         if os.path.exists(dataDir) is False:
           call(['mkdir',dataDir])
-
-        # Set image directory
-#        imgDir = "./img/"
-#
-#       if os.path.exists(imgDir) is False:
-#          call(['mkdir',imgDir])
 
         targdataDir = dataDir+searchName + '/'
 
@@ -435,7 +429,7 @@ class hsMiner(tkinter.Tk):
 if __name__ == "__main__":
     app = hsMiner(None)
     app.title('Hansard Miner')
-    img = tkinter.PhotoImage(file='./parliament-uk-logo.gif')
+    img = tkinter.PhotoImage(file='./imghttps://github.com/vj-sol/hansard-miner.git/parliament-uk-logo.gif')
     app.call('wm', 'iconphoto', app._w, img)
 #     app.wm_iconbitmap(bitmap='@/home/vijay/Documents/Strath/scripts/python/parliament-uk-logo.xbm')
     app.mainloop()
