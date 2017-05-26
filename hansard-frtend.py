@@ -99,11 +99,14 @@ class hsMiner(tkinter.Tk):
         self.labelVariable.set(u"Please perform a search...")
 
         self.text = tkinter.Text(self, wrap="word")
-        self.text.grid(column=0,row=6,columnspan=4,sticky='EW')
+        self.text.grid(column=0,row=7,columnspan=4,sticky='EW')
 
         sys.stdout = TextRedirector(self.text, "stdout")
 #         self.text.pack(side="top", fill="both", expand=True)
 #         self.text.tag_configure("stderr", foreground="#b22222")
+
+        self.progress = tkinter.ttk.Progressbar(self, orient='horizontal', mode = 'indeterminate')
+        self.progress.grid(column=0,row=6,columnspan=4,sticky='EW')
 
         self.grid_columnconfigure(0,weight=1)
         self.resizable(True,True)
@@ -318,8 +321,6 @@ class hsMiner(tkinter.Tk):
 # outDat = 9 members
         count = -1
         for url in dfurls:
-          self.progress = tkinter.ttk.Progressbar(self, orient='horizontal', mode = 'indeterminate')
-          self.progress.grid(column=0,row=6,columnspan=4,sticky='EW')
           self.progress.start(10)
           tkinter.Tk.update(self)
           count = count+1
