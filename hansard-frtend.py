@@ -6,6 +6,7 @@ import os
 import tkinter
 #import HansardBkend
 from tkinter.ttk import *
+import tkinter.scrolledtext as tkst
 import requests
 import codecs
 import csv
@@ -98,7 +99,7 @@ class hsMiner(tkinter.Tk):
         label.grid(column=0,row=5,columnspan=4,sticky='EW')
         self.labelVariable.set(u"Please perform a search...")
 
-        self.text = tkinter.Text(self, wrap="word")
+        self.text = tkst.ScrolledText(self, wrap="word")
         self.text.grid(column=0,row=7,columnspan=4,sticky='EW')
 
         sys.stdout = TextRedirector(self.text, "stdout")
@@ -135,35 +136,52 @@ class hsMiner(tkinter.Tk):
 
         ## Perform step 2 - Build directory structure
 
+        targcwd = os.getcwd()
+
         # Set search criteria directory
-        searchcritDir = "./search-criteria/"
+        searchcritDir = targcwd + "/search-criteria/"
 
         if os.path.exists(searchcritDir) is False:
-          call(['mkdir',searchcritDir])
+            try:
+                call(['mkdir',searchcritDir])
+            except:
+                call(['mkdir',searchcritDir],shell=True)
 
         # Set storage directory
-        storeDir = './stores/'
+        storeDir = targcwd + '/stores/'
 
         if os.path.exists(storeDir) is False:
-          call(['mkdir',storeDir])
+            try:
+                call(['mkdir',storeDir])
+            except:
+                call(['mkdir',searchDir],shell=True)
 
         # Set search storage directory
-        searchDir = "./stores/searches/"
+        searchDir = targcwd + "/stores/searches/"
 
         if os.path.exists(searchDir) is False:
-          call(['mkdir',searchDir])
+            try:
+                call(['mkdir',searchDir])
+            except:
+                call(['mkdir',searchDir],shell=True)
 
         # Set text directory
-        textDir = "./stores/text/"
+        textDir = targcwd + "/stores/text/"
 
         if os.path.exists(textDir) is False:
-          call(['mkdir',textDir])
+            try:
+                call(['mkdir',textDir])
+            except:
+                call(['mkdir',textDir],shell=True)
 
         # Set database directory
-        dataDir = "./databases/"
+        dataDir = targcwd + "/databases/"
 
         if os.path.exists(dataDir) is False:
-          call(['mkdir',dataDir])
+            try:
+                call(['mkdir',dataDir])
+            except:
+                call(['mkdir',dataDir],shell=True)
 
         # Set image directory
 #        imgDir = "./img/"
@@ -174,7 +192,10 @@ class hsMiner(tkinter.Tk):
         targdataDir = dataDir+searchName + '/'
 
         if os.path.exists(targdataDir) is False:
-          call(['mkdir',targdataDir])
+            try:
+                call(['mkdir',targdataDir])
+            except:
+                call(['mkdir',targdataDir],shell=True)
 
 # if os.path.exists(textDir + searchName + '/') is False:
 #       call(['mkdir',textDir+searchName])
@@ -415,7 +436,11 @@ class hsMiner(tkinter.Tk):
           name = datFrame.name[count]
           finalDir = targdataDir + name
           if os.path.exists(finalDir) is False:
-            call(['mkdir', finalDir])
+              try:
+                  call(['mkdir', finalDir])
+              except:
+                  call(['mkdir', finalDir],shell=True)
+                  
           fileName = name + '.csv'
           fileDir = finalDir + '/' + fileName
 #     print(fileDir)
